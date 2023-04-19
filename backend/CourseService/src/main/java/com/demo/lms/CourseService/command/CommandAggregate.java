@@ -10,6 +10,7 @@ import org.axonframework.spring.stereotype.Aggregate;
 import org.springframework.beans.BeanUtils;
 
 import com.demo.lms.CourseService.core.events.CourseCreatedEvent;
+import com.demo.lms.CourseService.core.events.CourseDeletedEvent;
 
 @Aggregate
 public class CommandAggregate {
@@ -38,6 +39,19 @@ public class CommandAggregate {
 		
 	}
 	
+	@CommandHandler
+	public CommandAggregate(DeleteCourseCommand deleteCourseCommand) {
+		 CourseDeletedEvent courseDeletedEvent=new CourseDeletedEvent();
+	        BeanUtils.copyProperties(deleteCourseCommand,courseDeletedEvent);
+	        System.out.println("command handler-delete");
+	        AggregateLifecycle.apply(courseDeletedEvent);
+	    }
+	    @EventSourcingHandler
+	    public void on(CourseDeletedEvent courseDeletedEvent){
+	        this.courseId =courseDeletedEvent.getCourseId();
+	        this.title=courseDeletedEvent.getTitle();
+	    }
+	    
 	@EventSourcingHandler
 	public void on(CourseCreatedEvent courseCreatedEvent) {
 		this.courseId= courseCreatedEvent.getCourseId();

@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.lms.CourseService.command.CreateCourseCommand;
+import com.demo.lms.CourseService.command.DeleteCourseCommand;
 import com.demo.lms.CourseService.model.CreateCourseRestModel;
 
 
@@ -30,7 +32,7 @@ public class CourseCommandController {
         .hours(createCourseRestModel.getHours())
         .title(createCourseRestModel.getTitle())
         .courseId(UUID.randomUUID().toString())
-        .technology(createCourseRestModel.toString()).build();
+        .technology(createCourseRestModel.getTechnology()).build();
         String returnValue;
         try {
         	returnValue=commandGateway.sendAndWait(createCourseCommand);
@@ -41,5 +43,18 @@ public class CourseCommandController {
         
         return returnValue;
 
+    }
+    @DeleteMapping("/delete/{courseName}")
+    public String deleteCourse(@PathVariable String courseName) {
+    	 DeleteCourseCommand deleteCourseCommand=new DeleteCourseCommand(UUID.randomUUID().toString(),courseName);
+    	 String returnValue;
+    	 try {
+    		 returnValue= this.commandGateway.sendAndWait(deleteCourseCommand);
+    	 }  
+    	 catch(Exception e) {
+         	returnValue=e.getLocalizedMessage();
+         }
+    	return returnValue;
+    	
     }
 }

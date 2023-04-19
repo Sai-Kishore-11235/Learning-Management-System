@@ -30,4 +30,16 @@ public class CoursesQueryHandler {
 		return courseRest;
 		
 	}
+	@QueryHandler
+	 public  List<CourseRestModel> findCoursesByTechnology(String technology) {
+		List<CourseRestModel> courseRest = new ArrayList<>();
+		List<CourseEntity> storedCourses = courseRepository.findByTechnology(technology);
+		for(CourseEntity courseEntity : storedCourses) {
+			CourseRestModel courseRestModel = new CourseRestModel();
+			BeanUtils.copyProperties(courseEntity, courseRestModel);
+			courseRest.add(courseRestModel);
+		}
+		return courseRest;
+		
+	}
 }

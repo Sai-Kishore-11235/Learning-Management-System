@@ -1,0 +1,12 @@
+# spring:
+#   data:
+#     mongodb:
+#       uri: mongodb://localhost:27017/axon
+#   mongo:
+#     database-name: axon
+#     token-store:
+#       enabled: true
+#     saga-store:
+#       enabled: false
+#     event-store:
+#       enabled: true
