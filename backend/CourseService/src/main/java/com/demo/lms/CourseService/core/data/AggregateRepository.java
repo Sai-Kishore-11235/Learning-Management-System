@@ -10,4 +10,5 @@ public interface AggregateRepository extends MongoRepository<CourseMongoEntity, 
 
 	List<CourseMongoEntity> findByTechnology(String technology);
 	
+	String deleteByTitle(String title);
 }

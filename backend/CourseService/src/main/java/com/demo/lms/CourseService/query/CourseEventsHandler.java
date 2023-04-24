@@ -48,13 +48,21 @@ public class CourseEventsHandler {
 	public void on (CourseDeletedEvent event) {
 //		CourseEntity courseEntity= new CourseEntity();
 //		BeanUtils.copyProperties(event, courseEntity);
-		courseRepository.deleteByTitle(event.getTitle());
+		try {
+			courseRepository.deleteByTitle(event.getTitle());
+			aggregateRepository.deleteByTitle(event.getTitle());
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		
 		
 	}
 	
 	@KafkaListener(topics = "CourseEventsTopic",groupId ="CourseEventsTopic")
 	public void consume(ConsumerRecord<String,String> record) throws JsonMappingException, JsonProcessingException {
-		
+		System.out.println(record);
 		CourseMongoEntity courseEntity= objectMapper.readValue(record.value(), CourseMongoEntity.class);
 		aggregateRepository.save(courseEntity);
 	}
