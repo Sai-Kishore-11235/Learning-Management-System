@@ -1,7 +1,13 @@
-//package com.demo.lms.CourseService.core.data;
-//
-//
-//
-//public interface AggregateRepository extends MongoRepository<CourseEntity, String> {
-//
-//}
+package com.demo.lms.CourseService.core.data;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+
+public interface AggregateRepository extends MongoRepository<CourseMongoEntity, String> {
+
+	List<CourseMongoEntity> findByTechnology(String technology);
+	
+}

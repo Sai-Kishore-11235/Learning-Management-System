@@ -11,4 +11,5 @@ public class KafkaTopicConfig {
     public NewTopic userEventsTopic(){
         return TopicBuilder.name("CourseEventsTopic").build();
     }
+    
 }
