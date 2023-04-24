@@ -8,7 +8,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import com.demo.lms.CourseService.core.data.AggregateRepository;
-import com.demo.lms.CourseService.core.data.CourseEntity;
 import com.demo.lms.CourseService.core.data.CourseMongoEntity;
 import com.demo.lms.CourseService.core.data.CourseRepository;
 import com.demo.lms.CourseService.query.rest.CourseRestModel;
@@ -24,7 +23,7 @@ public class CoursesQueryHandler {
 	}
 	
 	@QueryHandler
-	 public  List<CourseRestModel> findCourses(FindCoursesQuery query) {
+	 public  List<CourseRestModel> findCourses(FindAllCoursesQuery query) {
 		List<CourseRestModel> courseRest = new ArrayList<>();
 		List<CourseMongoEntity> storedCourses = aggregateRepository.findAll();
 		for(CourseMongoEntity courseEntity : storedCourses) {
@@ -39,6 +38,19 @@ public class CoursesQueryHandler {
 	 public  List<CourseRestModel> findCoursesByTechnology(String technology) {
 		List<CourseRestModel> courseRest = new ArrayList<>();
 		List<CourseMongoEntity> storedCourses = aggregateRepository.findByTechnology(technology);
+		for(CourseMongoEntity courseEntity : storedCourses) {
+			CourseRestModel courseRestModel = new CourseRestModel();
+			BeanUtils.copyProperties(courseEntity, courseRestModel);
+			courseRest.add(courseRestModel);
+		}
+		return courseRest;
+		
+	}
+	
+	@QueryHandler
+	 public  List<CourseRestModel> findCoursesByTechnologyAndDuration(FindCoursesQuery findCoursesQuery ) {
+		List<CourseRestModel> courseRest = new ArrayList<>();
+		List<CourseMongoEntity> storedCourses = aggregateRepository.findByTechnologyAndHoursBetween(findCoursesQuery.getTechnology(),findCoursesQuery.getDurationFromRange(),findCoursesQuery.getDurationToRange());
 		for(CourseMongoEntity courseEntity : storedCourses) {
 			CourseRestModel courseRestModel = new CourseRestModel();
 			BeanUtils.copyProperties(courseEntity, courseRestModel);
