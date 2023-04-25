@@ -11,14 +11,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.demo.lms.CourseService.CourseServiceApplication;
 import com.demo.lms.CourseService.query.FindAllCoursesQuery;
 import com.demo.lms.CourseService.query.FindCoursesQuery;
 
 @RestController
 @RequestMapping("/api/v1.0/lms/courses")
 public class CourseQueryController {
-	@Autowired
-	QueryGateway queryGateway;
+	
+	private final QueryGateway queryGateway;
+	public CourseQueryController(QueryGateway queryGateway) {
+		this.queryGateway= queryGateway;
+	}
 	
 	@GetMapping("/getall")
 	public List<CourseRestModel> getCourses(){
