@@ -11,6 +11,7 @@ body {
 .app-header {
   justify-content: space-between;
   position: fixed;
+  background: coral;
   top: 0;
   left: 0;
   right: 0;
@@ -90,4 +91,10 @@ body {
 }
 .login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
   padding: 0.8375em 0;
+}
+a :hover {
+  color: white;
+}
+.linkButton{
+  background: lightgray;
 }
