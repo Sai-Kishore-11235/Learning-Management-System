@@ -7,7 +7,7 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { RegisterComponent } from './components/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
-// import { FlexLayoutModule } from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap'; 
 
@@ -25,7 +25,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     AngularMaterialModule,
     FormsModule, 
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    FlexLayoutModule
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
