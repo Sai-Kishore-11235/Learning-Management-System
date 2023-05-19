@@ -1,4 +1,7 @@
+import { RepositionScrollStrategy } from '@angular/cdk/overlay';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/user.service';
 
 @Component({
@@ -7,23 +10,52 @@ import { UserService } from 'src/app/user.service';
   styleUrls: ['./log-in.component.css']
 })
 export class LogInComponent implements OnInit {
-  username: String = ""
-  userPass: String = ""
-  user:any ={}
-  constructor(private userService:UserService) { }
+  loginForm: FormGroup;
+  user:any;
+  errorMessage: string=""
+  
+  constructor(private userService:UserService,private fb: FormBuilder,private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      username: ["", Validators.required],
+      password: ["", Validators.required]
+    });
   }
   onValidate(){
-    console.log(this.username,this.userPass)
-    this.user["username"]= this.username;
-    this.user["password"] = this.userPass
-    this.userService.validateUser(this.user).subscribe((response )=> {
+    if (this.loginForm.valid) {
+     
+      this.user = this.loginForm.value;
+       this.userService.validateUser(this.user).subscribe((response )=> {
       console.log(response)
+      if(response.hasusername){
+        this.errorMessage=""
+        this.loginForm.reset();
+        this.loginUser();
+      }
+      else{
+        this.errorMessage = "Invalid User"
+      }
     },(error)=>{
       console.error(error)
     }
     );
+    }
+   
   }
+  loginUser(){
+    this.userService.loginUser(this.user).subscribe((response)=>{
+      if(response.message.includes("user successfully logged in")){
+        localStorage.setItem("token",response.token)
+      }
 
+    },(error)=>{
+      // this.errorMessage =
+      this._snackBar.open("Invalid Credentials", "Login",{
+        duration: 3000
+      });
+
+      console.error(error)
+    })
+  }
 }

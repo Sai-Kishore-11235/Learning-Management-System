@@ -12,13 +12,13 @@ export class UserService {
   validateUser(user:any):Observable<any>{
     let headers = new HttpHeaders({'Content-Type': 'application/json'})
     // headers.append('Access-Control-Allow-Origin', '*')
-    // const url = "http://localhost:8082/user-service/api/v1/validateUser"
-    user = {
-      "title" : "Python 22",
-      "hours": 22,
-      "technology" : "Python"
+    const url = "http://localhost:8082/user-service/auth/v1/validateUser"
+    return this.http.post(url,user,{headers})
   }
-    const url = "http://localhost:8082/course-service/api/v1.0/lms/courses/add/test12"
+  loginUser(user:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type': 'application/json'})
+    // headers.append('Access-Control-Allow-Origin', '*')
+    const url = "http://localhost:8082/user-service/auth/v1/login"
     return this.http.post(url,user,{headers})
   }
 }

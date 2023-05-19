@@ -4,17 +4,27 @@
       <mat-card-header>
         <mat-card-title>Log in</mat-card-title>
       </mat-card-header>
-      <form class="example-form">
-        <mat-card-content>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Username" name="UserName" [(ngModel)]="username">
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <input type="password" matInput placeholder="Password" name="Password" [(ngModel)]="userPass">
-          </mat-form-field>
-        </mat-card-content>
-        <button mat-stroked-button color="accent" class="btn-block" (click)="onValidate()">Log in</button>
+      <form [formGroup]="loginForm">
+        <mat-form-field >
+        <div class="form-group">
+          <!-- <label for="login-v1-wrong">Login</label> -->
+          <input type="text"  matInput placeholder="Username" id="login-v1-wrong" formControlName="username">
+        </div>
+      </mat-form-field>
+      <mat-form-field>
+        <div class="form-group">
+          <!-- <label for="password-v1-wrong">Password</label> -->
+          <input type="password" matInput placeholder="Password"  id="password-v1-wrong" formControlName="password">
+        </div>
+      </mat-form-field>
+      <div class="row">
+        <span class="text-danger" *ngIf="errorMessage!=''">{{errorMessage}}</span>
+      </div>
+        <div class="row">
+          <button type="button" class="btn btn-danger" (click)="onValidate()" [disabled]="!loginForm.valid">Submit</button>  
+        </div>
       </form>
+
     </mat-card>
 
   </div>
