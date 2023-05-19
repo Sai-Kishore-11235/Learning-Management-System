@@ -10,6 +10,8 @@ import { AngularMaterialModule } from './angular-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap'; 
+import { UserService } from './user.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -26,9 +28,11 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     FormsModule, 
     ReactiveFormsModule,
     NgbModule,
-    FlexLayoutModule
+    HttpClientModule,
+    FlexLayoutModule,
+
   ],
-  providers: [],
+  providers: [UserService ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })

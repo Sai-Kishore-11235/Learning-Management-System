@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-log-in',
@@ -6,10 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./log-in.component.css']
 })
 export class LogInComponent implements OnInit {
-
-  constructor() { }
+  username: String = ""
+  userPass: String = ""
+  user:any ={}
+  constructor(private userService:UserService) { }
 
   ngOnInit(): void {
+  }
+  onValidate(){
+    console.log(this.username,this.userPass)
+    this.user["username"]= this.username;
+    this.user["password"] = this.userPass
+    this.userService.validateUser(this.user).subscribe((response )=> {
+      console.log(response)
+    },(error)=>{
+      console.error(error)
+    }
+    );
   }
 
 }
