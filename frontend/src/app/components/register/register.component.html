@@ -3,26 +3,31 @@
       <mat-card-header>
         <mat-card-title>Register</mat-card-title>
       </mat-card-header>
-      <form class="example-form">
-        <mat-card-content>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Username">
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Email">
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Password">
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <mat-label>Choose a role...</mat-label>
-            <mat-select>
-              <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </mat-card-content>
-        <button mat-stroked-button color="accent" class="btn-block">Register</button>
+      <form [formGroup]="registerForm">
+        <mat-form-field >
+        <div class="form-group">
+          <!-- <label for="login-v1-wrong">Login</label> -->
+          <input type="text"  matInput autocomplete="off" placeholder="Username" id="register-v1-wrong" formControlName="username">
+        </div>
+      </mat-form-field>
+      <mat-form-field >
+        <div class="form-group">
+          <!-- <label for="login-v1-wrong">Login</label> -->
+          <input type="text"  matInput autocomplete="off" placeholder="Email" id="register-v1-wrong" formControlName="userEmail">
+        </div>
+      </mat-form-field>
+      <mat-form-field>
+        <div class="form-group">
+          <!-- <label for="password-v1-wrong">Password</label> -->
+          <input type="password" matInput placeholder="Password" minlength="8"  maxlength="16" id="password-v1-wrong" formControlName="password">
+        </div>
+      </mat-form-field>
+      <div class="row">
+        <span class="text-danger" *ngIf="errorMessage!=''">{{errorMessage}}</span>
+      </div>
+        <div class="row">
+          <button type="button" class="btn btn-danger" (click)="onValidate()" [disabled]="!registerForm.valid">Submit</button>  
+        </div>
       </form>
     </mat-card>
   </div>

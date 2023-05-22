@@ -46,6 +46,7 @@ export class LogInComponent implements OnInit {
   loginUser(){
     this.userService.loginUser(this.user).subscribe((response)=>{
       if(response.message.includes("user successfully logged in")){
+        sessionStorage.setItem("user",this.user.username)
         localStorage.setItem("token",response.token)
       }
 

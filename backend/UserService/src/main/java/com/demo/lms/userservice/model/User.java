@@ -12,6 +12,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	private String username;
+	private String userEmail;
 	private String password;
 
 	public int getId() {
@@ -36,12 +37,19 @@ public class User {
 		super();
 	}
 
-	public User(int id, String username, String password) {
+	public User(int id, String username, String password,String userEmail) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
+		this.userEmail = userEmail;
 		
+	}
+	public String getUserEmail() {
+		return userEmail;
+	}
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
 	
 	
