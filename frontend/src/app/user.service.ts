@@ -21,4 +21,10 @@ export class UserService {
     const url = "http://localhost:8082/user-service/auth/v1/login"
     return this.http.post(url,user,{headers})
   }
+  registerUser(user:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type': 'application/json'})
+    // headers.append('Access-Control-Allow-Origin', '*')
+    const url = "http://localhost:8082/user-service/auth/v1//user/addUser"
+    return this.http.post(url,user,{headers})
+  }
 }

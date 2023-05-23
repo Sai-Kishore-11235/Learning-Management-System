@@ -7,27 +7,53 @@
         <mat-form-field >
         <div class="form-group">
           <!-- <label for="login-v1-wrong">Login</label> -->
-          <input type="text"  matInput autocomplete="off" placeholder="Username" id="register-v1-wrong" formControlName="username">
+          <input type="text"  matInput autocomplete="off" placeholder="Username" id="username" formControlName="username">
         </div>
       </mat-form-field>
+      <div *ngIf="registerForm.touched && registerForm.controls.username.errors?.required" class="row text-danger">
+        Username is required
+      </div>
       <mat-form-field >
         <div class="form-group">
           <!-- <label for="login-v1-wrong">Login</label> -->
-          <input type="text"  matInput autocomplete="off" placeholder="Email" id="register-v1-wrong" formControlName="userEmail">
-        </div>
+          <input type="email"  matInput autocomplete="off" placeholder="Email" id="userEmail" formControlName="userEmail">
+          </div>
+          
+          
       </mat-form-field>
+      <div *ngIf="registerForm.touched && registerForm.controls.userEmail.errors?.required" class="row text-danger">
+        Email is required
+      </div>
+      <div *ngIf="registerForm.touched && registerForm.controls.userEmail.errors?.email" class="row text-danger">
+        Invalid email format
+      </div>
+      
+    
       <mat-form-field>
         <div class="form-group">
           <!-- <label for="password-v1-wrong">Password</label> -->
           <input type="password" matInput placeholder="Password" minlength="8"  maxlength="16" id="password-v1-wrong" formControlName="password">
         </div>
       </mat-form-field>
+      <div *ngIf="registerForm.touched && registerForm.controls.password.errors?.required" class="row text-danger">
+        Password is required
+      </div>
+      <div *ngIf="registerForm.touched && registerForm.controls.password.errors?.minlength" class="row text-danger">
+        Password should be minimum 8 characters 
+      </div>
+      <div *ngIf="registerForm.touched && registerForm.controls.password.errors?.maxlength" class="row text-danger">
+        Password can be maximum of 16 characters 
+      </div>
+      <div *ngIf="registerForm.touched && registerForm.controls.password.errors?.passwordPattern && !registerForm.controls.password.errors?.required  && !registerForm.controls.password.errors?.minlength" class="row text-danger">
+        Password should be alphanumeric 
+      </div>
       <div class="row">
         <span class="text-danger" *ngIf="errorMessage!=''">{{errorMessage}}</span>
       </div>
         <div class="row">
           <button type="button" class="btn btn-danger" (click)="onValidate()" [disabled]="!registerForm.valid">Submit</button>  
         </div>
+       
       </form>
     </mat-card>
   </div>

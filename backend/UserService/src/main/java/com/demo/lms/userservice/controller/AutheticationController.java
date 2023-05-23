@@ -106,13 +106,18 @@ public class AutheticationController {
 	@PostMapping("/user/addUser")
 	public ResponseEntity<?> addUser(@RequestBody User user)
 	{
+		Map<String,String> registerMap = new HashMap<String,String>();
 		User user1 = userServiceImpl.addUser(user);
 		if(user1!=null)
 		{
-			return new ResponseEntity<String>("User is added", HttpStatus.CREATED);
+			registerMap.put("userAdded","true");
+			return new ResponseEntity<>(registerMap, HttpStatus.CREATED);
 		}
-		else
-			return new ResponseEntity<String>("User cannot be added", HttpStatus.CONFLICT);
+		else {
+			registerMap.put("userAdded","UserName Already Exists");
+			return new ResponseEntity<>(registerMap, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+			
 	}
 	
  }

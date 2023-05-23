@@ -32,14 +32,20 @@ public class UserServiceImpl implements IUserService
 	@Override
 	public User addUser(User user)
 	{
-		User u = userRepo.save(user);
-		if(u!=null)
-		{
-			return userRepo.save(user);
-			
+		boolean userExists =userRepo.existsByUsername(user.getUsername());
+		if(!userExists) {
+			User u = userRepo.save(user);
+			if(u!=null)
+			{
+				return userRepo.save(user);
+				
+			}
+			else
+				return null;
 		}
-		else
+		else {
 			return null;
+		}
 	}
 
 	@Override
