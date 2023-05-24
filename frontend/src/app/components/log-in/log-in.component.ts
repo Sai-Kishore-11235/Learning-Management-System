@@ -2,7 +2,10 @@ import { RepositionScrollStrategy } from '@angular/cdk/overlay';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
 import { UserService } from 'src/app/user.service';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-log-in',
@@ -14,7 +17,8 @@ export class LogInComponent implements OnInit {
   user:any;
   errorMessage: string=""
   
-  constructor(private userService:UserService,private fb: FormBuilder,private _snackBar: MatSnackBar) { }
+  constructor(private userService:UserService,private fb: FormBuilder,private _snackBar: MatSnackBar, private route: ActivatedRoute,
+    private router: Router,private authservice:AuthService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -46,8 +50,11 @@ export class LogInComponent implements OnInit {
   loginUser(){
     this.userService.loginUser(this.user).subscribe((response)=>{
       if(response.message.includes("user successfully logged in")){
-        sessionStorage.setItem("user",this.user.username)
+        this.authservice.login(this.user.username)
+        // sessionStorage.setItem("user",this.user.username)
         localStorage.setItem("token",response.token)
+        // displayLogout()
+        this.router.navigate(['/courseList'])
       }
 
     },(error)=>{

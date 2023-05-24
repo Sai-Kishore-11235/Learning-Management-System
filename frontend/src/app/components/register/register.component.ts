@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/user.service';
 @Component({
   selector: 'app-register',
@@ -12,7 +13,8 @@ export class RegisterComponent implements OnInit {
   user:any;
   errorMessage: string=""
   Roles: any = ['Admin', 'Author', 'Reader'];
-  constructor(private userService:UserService,private fb: FormBuilder,private _snackBar: MatSnackBar) { }
+  constructor(private userService:UserService,private fb: FormBuilder,private _snackBar: MatSnackBar, private route: ActivatedRoute,
+    private router: Router) { }
   ngOnInit(): void {
     this.registerForm = this.fb.group({
       username: ["", Validators.required],
@@ -38,6 +40,11 @@ export class RegisterComponent implements OnInit {
      if(response.userAdded){
        this.errorMessage=""
        this.registerForm.reset()
+       this._snackBar.open("User Registered Successfully Please login", "Register",{
+        duration: 3000
+      });
+
+       this.router.navigate(['/login'])
     
      }
      else{

@@ -12,13 +12,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap'; 
 import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CourseListComponent } from './components/course-list/course-list.component';
+import { LogOutComponent } from './components/log-out/log-out.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LogInComponent,
-    RegisterComponent
+    RegisterComponent,
+    CourseListComponent,
+    LogOutComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
