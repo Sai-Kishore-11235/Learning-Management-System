@@ -9,13 +9,10 @@ import { ActivatedRoute, Route } from '@angular/router';
 export class AppComponent implements OnInit{
   
   title = 'Learning-Management-System';
-  userFlag : boolean =false;
-  adminFlag :boolean =false;
+  
   constructor(private router:ActivatedRoute){}
   ngOnInit(): void {
-    this.router.params.subscribe(params=>{
-      this.userFlag=params['userFlag']
-    })
+  
     
      
   }

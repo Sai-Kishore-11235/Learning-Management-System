@@ -1,1 +1,15 @@
-<p>course-list works!</p>
+<div style="display: flex;">
+    <div *ngFor="let course of courseList" style="margin: 2rem;">
+    <p-card [header]="course.title" subheader="" [style]="{ width: '360px' }">
+        <ng-template pTemplate="header">
+            <img alt="Card" src="assets/classroom-1.jpg" />
+        </ng-template>
+        <p>
+            {{course.hours}}
+        </p>
+        <ng-template pTemplate="footer">
+            <button mat-button class="cardButton">Add</button>
+        </ng-template>
+    </p-card>
+</div>
+</div>

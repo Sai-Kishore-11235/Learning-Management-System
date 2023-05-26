@@ -15,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CourseListComponent } from './components/course-list/course-list.component';
 import { LogOutComponent } from './components/log-out/log-out.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { CardModule } from 'primeng/card';
+import { CourseService } from './course.service';
 
 
 @NgModule({
@@ -36,9 +38,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     NgbModule,
     HttpClientModule,
     FlexLayoutModule,
+    CardModule,
 
   ],
-  providers: [UserService ],
+  providers: [UserService,CourseService ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
