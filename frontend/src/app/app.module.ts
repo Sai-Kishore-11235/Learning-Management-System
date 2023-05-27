@@ -17,6 +17,7 @@ import { LogOutComponent } from './components/log-out/log-out.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardModule } from 'primeng/card';
 import { CourseService } from './course.service';
+import { AddCourseComponent } from './add-course/add-course.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { CourseService } from './course.service';
     RegisterComponent,
     CourseListComponent,
     LogOutComponent,
-    NavbarComponent
+    NavbarComponent,
+    AddCourseComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ import { CourseService } from './course.service';
     HttpClientModule,
     FlexLayoutModule,
     CardModule,
+ 
 
   ],
   providers: [UserService,CourseService ],

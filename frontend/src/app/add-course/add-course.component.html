@@ -1,0 +1,55 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Add New Course</mat-card-title>
+      </mat-card-header>
+      <form [formGroup]="courseAddForm">
+        <mat-form-field >
+        <div class="form-group">
+          <!-- <label for="login-v1-wrong">Login</label> -->
+          <input type="text"  matInput autocomplete="off" placeholder="Course Name" id="courseName" formControlName="title">
+        </div>
+      </mat-form-field>
+      <div *ngIf="courseAddForm.touched && courseAddForm.controls.title.errors?.required" class="row text-danger">
+        Course Name is required
+      </div>
+      <mat-form-field >
+        <div class="form-group">
+          <!-- <label for="login-v1-wrong">Login</label> -->
+          <input type="text"  matInput autocomplete="off" placeholder="Technology" id="technology" formControlName="technology">
+          </div>
+          
+          
+      </mat-form-field>
+      <div *ngIf="courseAddForm.touched && courseAddForm.controls.technology.errors?.required" class="row text-danger">
+        Technology is required
+      </div>
+    
+      
+    
+      <mat-form-field>
+        <div class="form-group">
+          
+          <input type="number" matInput placeholder="Hours" min="1"  max="50" id="password-v1-wrong" formControlName="hours">
+        </div>
+      </mat-form-field>
+      <div *ngIf="courseAddForm.touched && courseAddForm.controls.hours.errors?.required" class="row text-danger">
+       Course Hours is required
+      </div>
+      <div *ngIf="courseAddForm.touched && courseAddForm.controls.hours.errors?.min" class="row text-danger">
+        Course Hours should be minimum of 1 hour
+      </div>
+      <div *ngIf="courseAddForm.touched && courseAddForm.controls.hours.errors?.max" class="row text-danger">
+        Course Hours should be maximum of 50 hours
+      </div>
+      
+      <div class="row">
+        <span class="text-danger" *ngIf="errorMessage!=''">{{errorMessage}}</span>
+      </div>
+        <div class="row">
+          <button type="button" class="btn btn-danger" (click)="onValidate()" [disabled]="!courseAddForm.valid">Submit</button>  
+        </div>
+       
+      </form>
+    </mat-card>
+  </div>

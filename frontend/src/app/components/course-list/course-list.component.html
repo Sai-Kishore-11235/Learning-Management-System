@@ -1,14 +1,37 @@
-<div style="display: flex;">
+<div *ngIf="adminFlag">
+    <button mat-button mat-raised-button style="float: right;" routerLink="course/add">Add Course</button>
+</div>
+<div style="display: flex;flex-wrap: wrap;" *ngIf="courseList.length>0"> 
     <div *ngFor="let course of courseList" style="margin: 2rem;">
-    <p-card [header]="course.title" subheader="" [style]="{ width: '360px' }">
-        <ng-template pTemplate="header">
-            <img alt="Card" src="assets/classroom-1.jpg" />
+        
+    <p-card [header]="course.title" subheader="" [style]="{ width: '360px',height:'410px' }">
+        <ng-template pTemplate="header" >
+            <div  *ngIf="course.technology=='Java'">
+                <img alt="Card" src="assets/java.jpg" style="height: 220px;" />
+            </div>
+            <div  *ngIf="course.technology.includes('Python')">
+                <img alt="Card" src="assets/python-img.png" style="height: 220px;" />
+            </div>
+            <div  *ngIf="course.technology.includes('R')">
+                <img alt="Card" src="assets/R-programming.png"  style="height: 220px;"/>
+            </div>
+            <div  *ngIf="course.technology.includes('test')">
+                <img alt="Card" src="assets/testing.jpg" style="height: 220px;" />
+            </div>
+            <div  *ngIf="course.technology=='Javascript'">
+                <img alt="Card" src="assets/javascript.jpg" style="height: 220px;" />
+            </div>
+            <div  *ngIf="!(course.technology=='Javascript' || course.technology.includes('test') || course.technology.includes('R') || course.technology.includes('Python')|| course.technology=='Java')">
+                <img alt="Card" src="assets/classroom.jpg" style="height: 220px;" />
+            </div>
+           
         </ng-template>
         <p>
-            {{course.hours}}
+            {{course.hours}} hours
         </p>
         <ng-template pTemplate="footer">
-            <button mat-button class="cardButton">Add</button>
+            <button mat-button class="cardButton" *ngIf="!adminFlag">Register</button>
+            <button mat-button class="cardButton" *ngIf="adminFlag" (click)="deleteCourse(course)">Delete Course</button>
         </ng-template>
     </p-card>
 </div>
