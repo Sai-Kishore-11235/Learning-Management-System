@@ -37,7 +37,7 @@ public class CoursesQueryHandler {
 	@QueryHandler
 	 public  List<CourseRestModel> findCoursesByTechnology(String technology) {
 		List<CourseRestModel> courseRest = new ArrayList<>();
-		List<CourseMongoEntity> storedCourses = aggregateRepository.findByTechnology(technology);
+		List<CourseMongoEntity> storedCourses = aggregateRepository.findByTechnologyIgnoreCase(technology);
 		for(CourseMongoEntity courseEntity : storedCourses) {
 			CourseRestModel courseRestModel = new CourseRestModel();
 			BeanUtils.copyProperties(courseEntity, courseRestModel);

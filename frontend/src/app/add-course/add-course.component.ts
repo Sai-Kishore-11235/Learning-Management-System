@@ -27,6 +27,7 @@ export class AddCourseComponent implements OnInit {
   
   onValidate(){
     if (this.courseAddForm.valid) {
+      this.courseAddForm.controls.title.setValue(this.courseAddForm.controls.title.value.trim())
       this.course = this.courseAddForm.value;
       this.courseService.saveCourse(this.course).subscribe((response )=> {
     //  console.log(response)

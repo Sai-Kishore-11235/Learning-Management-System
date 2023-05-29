@@ -1,7 +1,24 @@
+<div style="display: flex; justify-content: space-evenly;align-items: center; ">
+    <h2>Courses List</h2>
+</div>
+
+<div style="display:flex; flex-direction :row">
+    <input type="text" matInput  id="searchText" class="form-control" placeholder="Search Technology" (keydown.enter)="searchTechnology()" [(ngModel)]="searchInput">
+    <button mat-button aria-label="search icon" (click)="searchTechnology()" >
+        <mat-icon>search</mat-icon>
+        Search
+    </button>
+    <button mat-button aria-label="search icon" (click)="filterTechnologyWithHours()" >
+        <mat-icon>filter_list</mat-icon>
+        Filter
+    </button>
+    
+</div>
+
 <div *ngIf="adminFlag">
     <button mat-button mat-raised-button style="float: right;" routerLink="course/add">Add Course</button>
 </div>
-<div style="display: flex;flex-wrap: wrap;" *ngIf="courseList.length>0"> 
+<div style="display: flex;flex-wrap: wrap;" *ngIf="courseList && courseList.length>0"> 
     <div *ngFor="let course of courseList" style="margin: 2rem;">
         
     <p-card [header]="course.title" subheader="" [style]="{ width: '360px',height:'410px' }">
@@ -34,5 +51,10 @@
             <button mat-button class="cardButton" *ngIf="adminFlag" (click)="deleteCourse(course)">Delete Course</button>
         </ng-template>
     </p-card>
+
+    
 </div>
+</div>
+<div *ngIf="!courseList || (courseList && courseList.length==0)">
+    <h4>No Courses Available</h4>
 </div>

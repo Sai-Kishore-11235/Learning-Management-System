@@ -18,6 +18,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardModule } from 'primeng/card';
 import { CourseService } from './course.service';
 import { AddCourseComponent } from './add-course/add-course.component';
+import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { AddCourseComponent } from './add-course/add-course.component';
     CourseListComponent,
     LogOutComponent,
     NavbarComponent,
-    AddCourseComponent
+    AddCourseComponent,
+    FilterDialogComponent
   ],
   imports: [
     BrowserModule,

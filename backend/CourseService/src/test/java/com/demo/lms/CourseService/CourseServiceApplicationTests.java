@@ -49,8 +49,8 @@ class CourseServiceApplicationTests {
 		List<CourseMongoEntity> courses = new ArrayList<>();
 		courses.add(new CourseMongoEntity("1","Java",new BigDecimal(23.0),"Jvaerer"));
 		courses.add(new CourseMongoEntity("2","Java",new BigDecimal(23.0),"Jvarwerert"));
-		when(aggregateRepository.findByTechnology(technology)).thenReturn(courses);
-		List<CourseMongoEntity> result = aggregateRepository.findByTechnology(technology);
+		when(aggregateRepository.findByTechnologyIgnoreCase(technology)).thenReturn(courses);
+		List<CourseMongoEntity> result = aggregateRepository.findByTechnologyIgnoreCase(technology);
 		assertEquals(courses, result);
 	}
 	@Test

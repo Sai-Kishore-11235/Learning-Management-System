@@ -2,3 +2,7 @@
     background: coral;
     color: white;
 }
+#searchText{
+    width: 80%;
+    margin-left: 2rem;
+}

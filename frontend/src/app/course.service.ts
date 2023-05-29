@@ -29,5 +29,11 @@ export class CourseService {
     const url = `http://localhost:8082/course-service/api/v1.0/lms/courses/delete/${course.title}`
     return this.http.delete(url,{headers})
   }
+  getByTechnology(technology:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type': 'text/plain'})
+    // headers.append('Access-Control-Allow-Origin', '*')
+    const url = `http://localhost:8082/course-service/api/v1.0/lms/courses/info/${technology}`
+    return this.http.get(url,{headers})
+  }
 }
 

@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface AggregateRepository extends MongoRepository<CourseMongoEntity, String> {
 
-	List<CourseMongoEntity> findByTechnology(String technology);
+	List<CourseMongoEntity> findByTechnologyIgnoreCase(String technology);
 	
 	String deleteByTitle(String title);
 	
