@@ -11,7 +11,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap'; 
 import { UserService } from './user.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CourseListComponent } from './components/course-list/course-list.component';
 import { LogOutComponent } from './components/log-out/log-out.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -19,6 +19,7 @@ import { CardModule } from 'primeng/card';
 import { CourseService } from './course.service';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
+import { InterceptorService } from './interceptor.service';
 
 
 @NgModule({
@@ -46,7 +47,12 @@ import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
  
 
   ],
-  providers: [UserService,CourseService ],
+  providers: [ {
+     provide: HTTP_INTERCEPTORS,
+     useClass: InterceptorService,
+     multi: true
+    },
+   UserService,CourseService ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
