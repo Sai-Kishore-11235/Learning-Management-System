@@ -1,19 +1,19 @@
 <h1 mat-dialog-title>Filter Courses</h1>
-<div mat-dialog-content>
+<div mat-dialog-content style="display: flex;flex-direction: column;">
   <mat-form-field>
-    <mat-label>Technology</mat-label>
+    <mat-label>Technology *</mat-label>
     <input matInput [(ngModel)]="data.technology">
   </mat-form-field>
   <mat-form-field>
-    <mat-label>Min Hours</mat-label>
+    <mat-label>Min Hours *</mat-label>
     <input matInput [(ngModel)]="data.minHours">
   </mat-form-field>
   <mat-form-field>
-    <mat-label>Max Hours</mat-label>
+    <mat-label>Max Hours *</mat-label>
     <input matInput [(ngModel)]="data.maxHours">
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data">Filter</button>
 </div>

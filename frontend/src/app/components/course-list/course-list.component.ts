@@ -14,9 +14,9 @@ export class CourseListComponent implements OnInit {
   courseList:any[];
   adminFlag: boolean = false;
   searchInput: any =""
-  filterTechnology: any;
-  minHours: any;
-  maxHours: any;
+  filterTechnology="";
+  minHours =0;
+  maxHours=0;
   filterData: any;
   constructor(private courseService:CourseService,private authservice: AuthService,private router:Router,public dialog: MatDialog) { }
 
@@ -65,14 +65,30 @@ export class CourseListComponent implements OnInit {
   }
   filterTechnologyWithHours(){
     const dialogRef =  this.dialog.open(FilterDialogComponent,{
-      data: {name: this.filterTechnology, minHours: this.minHours,maxHours : this.maxHours},
+      data: {technology: this.filterTechnology, minHours: this.minHours,maxHours : this.maxHours},
     })
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(result)
       this.filterData = result
+      this.filterByTechnologyAndMinMaxHours()
+    
        });
   }
+  filterByTechnologyAndMinMaxHours(){
+    if(this.filterData.technology.trim()=="" && this.filterData.minHours ==0 && this.filterData.maxHours ==0){
+      this.getAllCourses()
+    }
+    else{
+      this.courseService.getByTechnologyAndMinMaxhours(this.filterData).subscribe(res=>{
+        this.courseList = res;
+        console.log(this.courseList)
+  
+      })
+    }
+    
+  }
+
 
   
 }

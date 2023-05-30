@@ -13,6 +13,6 @@ public interface AggregateRepository extends MongoRepository<CourseMongoEntity, 
 	
 	String deleteByTitle(String title);
 	
-	@Query("{'technology' : ?0, 'hours': {$gte: ?1 ,$lte : ?2}}")
+	@Query(value ="{'technology' :{ $regex: /?0/, $options: 'i'}}, 'hours': {$gte: ?1 ,$lte : ?2}}")
 	List<CourseMongoEntity> findByTechnologyAndHoursBetween(String technology,String durationFromRange,String durationToRange);
 }

@@ -15,8 +15,10 @@
     
 </div>
 
-<div *ngIf="adminFlag">
-    <button mat-button mat-raised-button style="float: right;" routerLink="course/add">Add Course</button>
+<div *ngIf="adminFlag" style="display: flex;flex-direction: row-reverse;">
+    <button mat-button routerLink="course/add">Add Course</button>
+    <mat-icon     style="margin-top: 0.2em">add_circle</mat-icon>
+    
 </div>
 <div style="display: flex;flex-wrap: wrap;" *ngIf="courseList && courseList.length>0"> 
     <div *ngFor="let course of courseList" style="margin: 2rem;">
