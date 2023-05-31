@@ -104,3 +104,8 @@ a :hover {
 .linkButton{
   background: lightgray;
 }
+.login-background{
+  height: 100%;
+  background: url("src/assets/classroom.jpg");
+  background-repeat: round;
+}
