@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { CourseService } from 'src/app/course.service';
@@ -18,7 +19,7 @@ export class CourseListComponent implements OnInit {
   minHours =0;
   maxHours=0;
   filterData: any;
-  constructor(private courseService:CourseService,private authservice: AuthService,private router:Router,public dialog: MatDialog) { }
+  constructor(private courseService:CourseService,private authservice: AuthService, private _snackBar: MatSnackBar,private router:Router,public dialog: MatDialog) { }
 
   ngOnInit(): void {
     if(sessionStorage.getItem("user")){
@@ -89,7 +90,11 @@ export class CourseListComponent implements OnInit {
     
   }
 
-
+  registerCourse(){
+    this._snackBar.open("Course Registered Successfully", "Course",{
+      duration: 3000
+    });
+  }
   
 }
 

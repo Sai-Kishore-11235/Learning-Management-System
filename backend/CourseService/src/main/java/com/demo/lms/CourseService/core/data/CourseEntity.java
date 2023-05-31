@@ -30,5 +30,7 @@ public class CourseEntity implements Serializable {
 	private  String technology;
 	
     private  BigDecimal hours;
+    
+    private  String description;
 
 }

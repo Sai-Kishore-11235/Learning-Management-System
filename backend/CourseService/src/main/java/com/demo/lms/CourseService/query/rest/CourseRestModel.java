@@ -10,4 +10,5 @@ public class CourseRestModel {
     private  String title;
     private  BigDecimal hours;
     private  String technology;
+    private  String description;
 }

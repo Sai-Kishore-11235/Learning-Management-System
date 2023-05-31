@@ -10,4 +10,6 @@ public class FindCoursesQuery {
 	private String durationFromRange;
 	
 	private String durationToRange;
+	
+	private  String description;
 }

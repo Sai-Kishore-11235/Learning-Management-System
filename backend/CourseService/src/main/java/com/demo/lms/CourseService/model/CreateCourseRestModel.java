@@ -11,6 +11,7 @@ public class CreateCourseRestModel {
     private String title;
     private BigDecimal hours;
     private  String technology;
+    private  String description;
 
    
 }

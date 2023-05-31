@@ -20,6 +20,7 @@ public class CommandAggregate {
 	private String title;
     private BigDecimal hours;
     private  String technology;
+    private String description;
 
 	public CommandAggregate() {}
 	
@@ -58,6 +59,7 @@ public class CommandAggregate {
 		this.title=courseCreatedEvent.getTitle();
 		this.hours=courseCreatedEvent.getHours();
 		this.technology =courseCreatedEvent.getTechnology();
+		this.description =courseCreatedEvent.getDescription();
 	}
 
 }

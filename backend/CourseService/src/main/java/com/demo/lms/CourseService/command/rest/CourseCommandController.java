@@ -39,6 +39,7 @@ public class CourseCommandController {
     public ResponseEntity<?> createCourse(@PathVariable String courseName, @RequestBody CreateCourseRestModel createCourseRestModel){
 		Map<String,String> addCourse = new HashMap<String,String>();
         CreateCourseCommand createCourseCommand=CreateCourseCommand.builder()
+        .description(createCourseRestModel.getDescription())	
         .hours(createCourseRestModel.getHours())
         .title(createCourseRestModel.getTitle())
         .courseId(UUID.randomUUID().toString())

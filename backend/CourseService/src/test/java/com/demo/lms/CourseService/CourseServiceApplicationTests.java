@@ -47,8 +47,8 @@ class CourseServiceApplicationTests {
 	public void testGetCoursesByTechnology() {
 		String technology = "Java";
 		List<CourseMongoEntity> courses = new ArrayList<>();
-		courses.add(new CourseMongoEntity("1","Java",new BigDecimal(23.0),"Jvaerer"));
-		courses.add(new CourseMongoEntity("2","Java",new BigDecimal(23.0),"Jvarwerert"));
+		courses.add(new CourseMongoEntity("1","Java",new BigDecimal(23.0),"Jvaerer","description"));
+		courses.add(new CourseMongoEntity("2","Java",new BigDecimal(23.0),"Jvarwerert","description"));
 		when(aggregateRepository.findByTechnologyIgnoreCase(technology)).thenReturn(courses);
 		List<CourseMongoEntity> result = aggregateRepository.findByTechnologyIgnoreCase(technology);
 		assertEquals(courses, result);
@@ -59,8 +59,8 @@ class CourseServiceApplicationTests {
 		String minHours = "20";
 		String maxHours = "24";
 		List<CourseMongoEntity> courses = new ArrayList<>();
-		courses.add(new CourseMongoEntity("1","Java",new BigDecimal(22.0),"Jvaerer"));
-		courses.add(new CourseMongoEntity("2","Java",new BigDecimal(23.0),"Jvarwerert"));
+		courses.add(new CourseMongoEntity("1","Java",new BigDecimal(22.0),"Jvaerer","description"));
+		courses.add(new CourseMongoEntity("2","Java",new BigDecimal(23.0),"Jvarwerert","description"));
 		when(aggregateRepository.findByTechnologyAndHoursBetween(technology,minHours,maxHours)).thenReturn(courses);
 		List<CourseMongoEntity> result = aggregateRepository.findByTechnologyAndHoursBetween(technology,minHours,maxHours);
 		assertEquals(courses, result);

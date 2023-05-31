@@ -14,6 +14,6 @@ public class CreateCourseCommand {
     private final String title;
     private final BigDecimal hours;
     private final String technology;
-
+    private final String description;
 
 }

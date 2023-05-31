@@ -20,6 +20,7 @@ export class AddCourseComponent implements OnInit {
     this.courseAddForm = this.fb.group({
       title: ["", Validators.required],
       technology: ["", Validators.required],
+      description: ["",Validators.required],
       hours: ["", Validators.required],
      
     });

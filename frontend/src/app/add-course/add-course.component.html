@@ -16,6 +16,15 @@
       <mat-form-field >
         <div class="form-group">
           <!-- <label for="login-v1-wrong">Login</label> -->
+          <input type="text"  matInput autocomplete="off" placeholder="Course Description" id="courseDescription" formControlName="description">
+        </div>
+      </mat-form-field>
+      <div *ngIf="courseAddForm.touched && courseAddForm.controls.description.errors?.required" class="row text-danger">
+        Course Description is required
+      </div>
+      <mat-form-field >
+        <div class="form-group">
+          <!-- <label for="login-v1-wrong">Login</label> -->
           <input type="text"  matInput autocomplete="off" placeholder="Technology" id="technology" formControlName="technology">
           </div>
           

@@ -20,5 +20,6 @@ public class CourseMongoEntity {
 	private String technology;
 	private BigDecimal hours;
 	private String title;
+	private  String description;
 
 }
