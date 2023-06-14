@@ -1,7 +1,7 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/courses
+      uri: mongodb://host.docker.internal:27017/courses
   mongo:
     database-name: courses
     token-store:

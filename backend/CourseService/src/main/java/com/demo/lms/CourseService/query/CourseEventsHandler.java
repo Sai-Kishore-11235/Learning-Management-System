@@ -41,6 +41,7 @@ public class CourseEventsHandler {
 		CourseEntity courseEntity= new CourseEntity();
 		BeanUtils.copyProperties(event, courseEntity);
 		courseRepository.save(courseEntity);
+		System.out.println(courseEntity);
 		this.kafkaTemplate.send("CourseEventsTopic",courseEntity);
 	}
 	
@@ -48,6 +49,7 @@ public class CourseEventsHandler {
 	public void on (CourseDeletedEvent event) {
 //		CourseEntity courseEntity= new CourseEntity();
 //		BeanUtils.copyProperties(event, courseEntity);
+		System.out.println("course handler-delete");
 		try {
 			courseRepository.deleteByTitle(event.getTitle());
 			aggregateRepository.deleteByTitle(event.getTitle());
