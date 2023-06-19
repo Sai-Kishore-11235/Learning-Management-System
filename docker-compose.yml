@@ -2,22 +2,25 @@ version: '3'
 services:
   discovery-service:
     image: saikishore07/discoveryserver:0.0.2
+    network_mode: "host"
     ports:
       - 8761:8761
     depends_on:
       - axon-server
-    networks:
-      - axon-demo
+    # networks:
+    #   - axon-demo
   apigateway-service:
     image: saikishore07/apigateway:0.0.2
+    network_mode: "host"
     ports:
       - 8082:8082
     depends_on:
       - discovery-service
-    networks:
-      - axon-demo
+    # networks:
+    #   - axon-demo
   user-service:
     image: saikishore07/userservice:0.0.2
+    network_mode: "host"
     ports:
       - 8086:8086
     depends_on:
@@ -27,6 +30,7 @@ services:
       - kafka
   frontend-service:
     image: saikishore07/lms:0.0.1
+    network_mode: "host"
     ports:
       - 80:80
     depends_on:
@@ -36,6 +40,7 @@ services:
       - kafka
   course-service:
     image: saikishore07/courseservice:0.0.2
+    network_mode: "host"
     ports:
       - 8084:8084
     depends_on:
@@ -44,44 +49,47 @@ services:
       - axon-server
       - kafka
     environment:
-      - AXON_AXONSERVER_HOSTNAME=axon-server
+      - AXON_AXONSERVER_HOSTNAME=localhost
       - AXON_AXONSERVER_PORT=8124
-    networks:
-      - axon-demo
+    # networks:
+    #   - axon-demo
   axon-server:
     image: axoniq/axonserver
+    network_mode: "host"
     ports: 
       - 8024:8024
       - 8124:8124
     volumes:
       - ./axonserver:/axonserver/data
       - ./axonserver/config:/axonserver/config
-    networks:
-      - axon-demo
+    # networks:
+    #   - axon-demo
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
+    network_mode: "host"
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - 22181:2181
-    networks:
-      - axon-demo
+    # networks:
+    #   - axon-demo
   kafka:
     image: confluentinc/cp-kafka:latest
+    network_mode: "host"
     depends_on:
       - zookeeper
     ports:
       - 29092:29092
     environment:
       KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://kafka:29092
+      KAFKA_ZOOKEEPER_CONNECT: localhost:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_HOST://localhost:29092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-    networks:
-      - axon-demo
+    # networks:
+    #   - axon-demo
 networks:
   axon-demo:
   
