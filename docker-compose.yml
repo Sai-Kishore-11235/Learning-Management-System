@@ -1,7 +1,7 @@
 version: '3'
 services:
   discovery-service:
-    image: saikishore07/discoveryserver:0.0.1
+    image: saikishore07/discoveryserver:0.0.2
     ports:
       - 8761:8761
     depends_on:
@@ -9,7 +9,7 @@ services:
     networks:
       - axon-demo
   apigateway-service:
-    image: saikishore07/apigateway:0.0.1
+    image: saikishore07/apigateway:0.0.2
     ports:
       - 8082:8082
     depends_on:
@@ -17,7 +17,7 @@ services:
     networks:
       - axon-demo
   user-service:
-    image: saikishore07/userservice:0.0.1
+    image: saikishore07/userservice:0.0.2
     ports:
       - 8086:8086
     depends_on:
@@ -35,7 +35,7 @@ services:
       - axon-server
       - kafka
   course-service:
-    image: saikishore07/courseservice:0.0.1
+    image: saikishore07/courseservice:0.0.2
     ports:
       - 8084:8084
     depends_on:
