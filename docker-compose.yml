@@ -19,7 +19,7 @@ services:
     # networks:
     #   - axon-demo
   user-service:
-    image: saikishore07/userservice:0.0.2
+    image: saikishore07/userservice:0.0.3
     network_mode: "host"
     ports:
       - 8086:8086
