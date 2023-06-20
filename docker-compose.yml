@@ -29,7 +29,7 @@ services:
       - axon-server
       - kafka
   frontend-service:
-    image: saikishore07/lms:0.0.3
+    image: saikishore07/lms:0.0.4
     network_mode: "host"
     ports:
       - 80:80
