@@ -12,19 +12,19 @@ export class UserService {
   validateUser(user:any):Observable<any>{
     let headers = new HttpHeaders({'Content-Type': 'application/json'})
     // headers.append('Access-Control-Allow-Origin', '*')
-    const url = "http://13.232.144.85:8082/user-service/auth/v1/validateUser"
+    const url = "http://65.0.85.115:8082/user-service/auth/v1/validateUser"
     return this.http.post(url,user,{headers})
   }
   loginUser(user:any):Observable<any>{
     let headers = new HttpHeaders({'Content-Type': 'application/json'})
     // headers.append('Access-Control-Allow-Origin', '*')
-    const url = "http://13.232.144.85:8082/user-service/auth/v1/login"
+    const url = "http://65.0.85.115:8082/user-service/auth/v1/login"
     return this.http.post(url,user,{headers})
   }
   registerUser(user:any):Observable<any>{
     let headers = new HttpHeaders({'Content-Type': 'application/json'})
     // headers.append('Access-Control-Allow-Origin', '*')
-    const url = "http://13.232.144.85:8082/user-service/auth/v1//user/addUser"
+    const url = "http://65.0.85.115:8082/user-service/auth/v1//user/addUser"
     return this.http.post(url,user,{headers})
   }
 }
